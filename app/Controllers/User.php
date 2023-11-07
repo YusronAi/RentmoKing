@@ -22,6 +22,15 @@ class User extends BaseController
         return view('User/index', $data);
     }
 
+    public function profil ()
+    {
+        $data = [
+            'title' => 'Profil'
+        ];
+
+        return view('user/profil', $data);
+    }
+
     public function auth ()
     {
         $username = $this->request->getVar('username');
@@ -34,7 +43,7 @@ class User extends BaseController
                 if ($password == $user['password']) {
                     $set = session();
                     $set->set('login', $user);
-                    return redirect()->to('/');
+                    return redirect()->to('/petugas');
                 } else {
                     session()->setFlashdata('pesan', 'Password Salah!');
                     return redirect()->to('login');

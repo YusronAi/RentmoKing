@@ -10,11 +10,12 @@
 
 	<div id="wrapper">
 
-		<?= $this->include("layouts/sidebar.php"); ?>
+		<?= $this->include("layouts/sidebarPetugas.php"); ?>
 
 		<div id="content-wrapper">
 
 			<div class="container-fluid">
+				<h1 style="color : red; background-color: white; text-align : center; opacity : 0.9; border-radius: 12px;" ><?= $title; ?></h1>
 
 				<!-- 
         karena ini halaman overview (home), kita matikan partial breadcrumb.
@@ -25,7 +26,8 @@
 				?>
 
 				<!-- Icon Cards-->
-				<div class="row">
+				<?= $this->renderSection('content'); ?>
+				<!-- <div class="row">
 					<div class="col-xl-3 col-sm-6 mb-3">
 						<div class="card text-white bg-primary o-hidden h-100">
 							<div class="card-body">
@@ -90,7 +92,7 @@
 							</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 			</div>
 			<!-- /.content-wrapper -->
@@ -100,7 +102,9 @@
 
 
 		<?= $this->include("layouts/js.php"); ?>
-
 </body>
-
 </html>
+
+
+
+

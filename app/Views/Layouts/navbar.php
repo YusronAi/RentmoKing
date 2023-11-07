@@ -24,7 +24,7 @@
             <ul class="navbar-nav ml-auto ml-md-0 justify-content-end">
 
                 <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="/profil" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user-circle fa-fw"></i> Admin
                     </a>
                     <div class="dropdown-menu dropdown-menu-right collapse" aria-labelledby="userDropdown">

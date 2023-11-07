@@ -23,9 +23,6 @@
                     <label for="">Password</label>
                 </div>
                 <button type="submit" name="submit">Login</button>
-                <div class="signUp-link">
-                    <p>Don't have an account? <a href="/registrasi">Registrasi</a></p>
-                </div>
             </form>
         </div>
         

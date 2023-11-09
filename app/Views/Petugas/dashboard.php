@@ -11,7 +11,7 @@
                 </div>
                 <div class="mr-5">Peraturan</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
+            <a class="card-footer text-white clearfix small z-1" href="/peraturan">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -25,9 +25,9 @@
                 <div class="card-body-icon">
                     <i class="fas fa-fw fa-list"></i>
                 </div>
-                <div class="mr-5">Data Pengembalian</div>
+                <div class="mr-5">Data Peminjaman</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
+            <a class="card-footer text-white clearfix small z-1" href="/petugas/data-peminjaman">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -41,9 +41,9 @@
                 <div class="card-body-icon">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                 </div>
-                <div class="mr-5">Data Peminjaman</div>
+                <div class="mr-5">Transaksi</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
+            <a class="card-footer text-white clearfix small z-1" href="/petugas/transaksi">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -57,9 +57,9 @@
                 <div class="card-body-icon">
                     <i class="fas fa-fw fa-life-ring"></i>
                 </div>
-                <div class="mr-5">Data Jatuh Tempo</div>
+                <div class="mr-5">Data Customers</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
+            <a class="card-footer text-white clearfix small z-1" href="/petugas/data-customers">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>

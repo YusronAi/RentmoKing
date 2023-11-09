@@ -8,16 +8,21 @@
         </button>
 
         <!-- Navbar Search -->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <?php if ($_SERVER['PHP_SELF'] == "/index.php/petugas/data-customers" || $_SERVER["PHP_SELF"] == "/index.php/motor/data-motor") { 
+            echo '<form method="post" action="" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <input type="text" name="keyword" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-light" type="button">
+                    <button class="btn btn-light" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>
-        </form>
+        </form>';
+        } else {
+
+        }
+        ?>
 
         <!-- Navbar -->
         <div class="collapse navbar-collapse justify-content-end">
@@ -25,7 +30,7 @@
 
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="/profil" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user-circle fa-fw"></i> Admin
+                    <img src="/img/<?= session()->get('login')['foto']; ?>" alt="" width="30px" style="border-radius: 50%;">     <?= session()->get('login')['username']; ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right collapse" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Settings</a>

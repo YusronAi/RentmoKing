@@ -7,11 +7,11 @@ use CodeIgniter\Model;
 class MotorModel extends Model
 {
     protected $table = 'motor';
-    protected $allowedFields = ['merek', 'no_polisi', 'warna', 'no_mesin', 'no_rangka', 'thn_keluar', 'status'];
+    protected $allowedFields = ['merek', 'no_polisi', 'warna', 'foto', 'no_mesin', 'no_rangka', 'thn_keluar', 'status'];
 
     public function search ($value) 
     {
-        return $this->table('motor')->like('no_polisi', $value);
+        return $this->table('motor')->like('no_polisi', $value)->orlike('merek', $value);
     }
 
     public function cari ($id)

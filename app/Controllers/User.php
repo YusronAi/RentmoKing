@@ -31,6 +31,25 @@ class User extends BaseController
         return view('user/profil', $data);
     }
 
+    public function users ()
+    {
+        $data = [
+            'title' => 'User'
+        ];
+
+        return view('user/user', $data);
+    }
+
+    public function data ()
+    {
+        $data = [
+            'title' => 'Data User',
+            'users' => $this->userModel->findAll()
+        ];
+
+        return view('user/data', $data);
+    }
+
     public function auth ()
     {
         $username = $this->request->getVar('username');
@@ -43,7 +62,7 @@ class User extends BaseController
                 if ($password == $user['password']) {
                     $set = session();
                     $set->set('login', $user);
-                    return redirect()->to('/petugas');
+                    return redirect()->to('/');
                 } else {
                     session()->setFlashdata('pesan', 'Password Salah!');
                     return redirect()->to('login');
@@ -79,8 +98,11 @@ class User extends BaseController
     {
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
+        $fileFoto = $this->request->getFile('foto');
         $role = $this->request->getVar('role');
 
+        $fileFoto->move('img');
+        $fileName = $fileFoto->getName();
         if (!$this->validate([
             'username' => 'required|is_unique[user.username]'
         ])) {
@@ -91,6 +113,9 @@ class User extends BaseController
 
         $this->userModel->save([
             'username' => $this->request->getVar('username'),
+            'alamat' => $this->request->getVar('alamat'),
+            'foto' => $fileName,
+            'no_telephone' => $this->request->getVar('no_telephone'),
             'password' => $this->request->getVar('password'),
             'role' => $this->request->getVar('role')
         ]);

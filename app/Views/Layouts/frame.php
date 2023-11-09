@@ -15,7 +15,7 @@
 		<div id="content-wrapper">
 
 			<div class="container-fluid">
-				<h1 style="color : red; background-color: white; text-align : center; opacity : 0.9; border-radius: 12px;" ><?= $title; ?></h1>
+				<h1 style="color : red; background-color: white; text-align : center; opacity : 0.9; border-radius: 12px;"><?= $title; ?></h1>
 
 				<!-- 
         karena ini halaman overview (home), kita matikan partial breadcrumb.
@@ -103,8 +103,5 @@
 
 		<?= $this->include("layouts/js.php"); ?>
 </body>
+
 </html>
-
-
-
-

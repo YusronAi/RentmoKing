@@ -2,31 +2,28 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?= $this->include("layouts/head.php"); ?>
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <?= $this->include("layouts/head.php"); ?>
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Document</title>
 </head>
 
 <body>
-<div class="card mb-3">
-  <img src="..." class="card-img-top" alt="...">
 
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+  <div class="circle">
+    <div class="box">
+      <div class="card">
+        <img src="/img/kingrentmo.png">
+        <div class="card-body">
+          <p class="card-text">Username : <?= session()->get('login')['username']; ?></p>
+          <p>Alamat : <?= session()->get('login')['alamat']; ?></p>
+          <p>No Telephone : <?= session()->get('login')['no_telephone']; ?></p>
+          <button class="back"><a href="/">Back</a></button>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-  </div>
-  <img src="..." class="card-img-bottom" alt="...">
-
-</div>
 </body>
 
 </html>

@@ -12,6 +12,7 @@ html {
 body {
   height: 100%;
   background-image: url('/img/kingrentmo.png');
+  background-size: 100%;
 }
 
 #wrapper {
@@ -379,4 +380,8 @@ body.sidebar-toggled footer.sticky-footer {
   body.sidebar-toggled footer.sticky-footer {
     width: calc(100% - 90px);
   }
+}
+
+.dark-mode {
+  background-color: black;
 }

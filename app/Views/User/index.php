@@ -25,7 +25,12 @@
                 <button type="submit" name="submit">Login</button>
             </form>
         </div>
-        
+        <?php if (session()->getFlashdata('pesan')) : ?>
+            <div class="alert alert-danger" style="color: blue;" role="alert">
+                <?= session()->getFlashdata('pesan'); ?>
+            </div>
+        <?php endif; ?>
+
     </div>
     <script src="\js\script.js"></script>
 </body>

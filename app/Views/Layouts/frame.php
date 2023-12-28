@@ -4,13 +4,11 @@
 <head>
 	<?= $this->include("layouts/head.php"); ?>
 </head>
-
 <body id="page-top">
 	<?= $this->include("layouts/navbar.php"); ?>
-
 	<div id="wrapper">
 
-		<?= $this->include("layouts/sidebarPetugas.php"); ?>
+		
 
 		<div id="content-wrapper">
 

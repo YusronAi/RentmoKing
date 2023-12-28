@@ -18,4 +18,8 @@ class CustomersModel extends Model
     {
         return $this->table('pelanggan')->like('id_pelanggan', $id);
     }
+
+    public function jumlah () {
+        return $this->table('pelanggan')->countAll();
+    }
 }

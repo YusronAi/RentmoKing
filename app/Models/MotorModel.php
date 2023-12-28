@@ -18,4 +18,8 @@ class MotorModel extends Model
     {
         return $this->table('motor')->like('no_mesin', $id);
     }
+
+    public function jumlah () {
+        return $this->table('motor')->countAll();
+    }
 }

@@ -65,7 +65,7 @@ class User extends BaseController
                     return redirect()->to('/');
                 } else {
                     session()->setFlashdata('pesan', 'Password Salah!');
-                    return redirect()->to('login');
+                    return redirect()->to('/login');
                 }
             } else {
                 session()->setFlashdata('pesan', 'Akun tidak ditemukan');
@@ -122,7 +122,7 @@ class User extends BaseController
 
 
         session()->setFlashdata('pesan', 'Register Berhasil');
-        return redirect()->to('/login');
+        return redirect()->to('/data-user');
     }
 
 }

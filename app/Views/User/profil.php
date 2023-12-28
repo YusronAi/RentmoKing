@@ -14,12 +14,12 @@
   <div class="circle">
     <div class="box">
       <div class="card">
-        <img src="/img/kingrentmo.png">
+        <img src="/img/<?= session()->get('login')['foto']; ?>">
         <div class="card-body">
           <p class="card-text">Username : <?= session()->get('login')['username']; ?></p>
           <p>Alamat : <?= session()->get('login')['alamat']; ?></p>
           <p>No Telephone : <?= session()->get('login')['no_telephone']; ?></p>
-          <button class="back"><a href="/">Back</a></button>
+          <a href="/"><button class="back">Back</button></a>
         </div>
       </div>
     </div>

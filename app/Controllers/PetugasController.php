@@ -2,12 +2,32 @@
 
 namespace App\Controllers;
 
+use App\Models\CustomersModel;
+use App\Models\MotorModel;
+use App\Models\TransaksiModel;
+
 class PetugasController extends BaseController
 {
+    protected $motorModel;
+    protected $customerModel;
+    protected $transaksiModel;
+
+    public function __construct()
+    {
+        $this->motorModel = new MotorModel();
+        $this->customerModel = new CustomersModel();
+        $this->transaksiModel = new TransaksiModel();
+    }
     public function petugas()
     {
+        $jumlahModel = $this->motorModel->jumlah();
+        $jumlahCustomer = $this->customerModel->jumlah();
+        $jumlahTransaksi = $this->transaksiModel->jumlah();
         $data = [
-        'title' => 'Dashboard'
+        'title' => 'Dashboard',
+        'jumlahMotor' => $jumlahModel,
+        'jumlahCustomer' => $jumlahCustomer,
+        'jumlahTransaksi' => $jumlahTransaksi,
         ];
 
         return view('petugas/dashboard', $data);

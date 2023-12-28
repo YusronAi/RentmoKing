@@ -4,8 +4,8 @@
 
 <div class="container">
     <div class="row align-items-center justify-content-center">
-            <div class="col-auto mt-4">
-                <div class="card" style="width: 25rem;">
+            <div class="col-auto">
+                <div class="card" style="width: 30rem;">
                     <div class="card-body">
                         <p class="card-text">
                             <ol>

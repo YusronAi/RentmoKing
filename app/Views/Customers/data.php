@@ -7,9 +7,9 @@
         <?php foreach ($customers as $customer) : ?>
             <?php $i = 1; ?>
             <div class="col-auto mt-4">
-                <div class="card" style="width: 25rem;">
-                    <img src="/img/<?= $customer['foto']; ?>" class="card-img-top" alt="...">
-                    <div class="card-body">
+                <div class="card text-light" style="width: 25rem;">
+                    <img src="/img/<?= $customer['foto']; ?>" class="card-img-top" alt="..." style="" >
+                    <div class="card-body" style="position: absolute;">
                         <p class="card-text">Nama : <?= $customer['nama']; ?></p>
                         <p class="card-text">Jenis Kelamin : <?= $customer['jenis_kelamin']; ?></p>
                         <p class="card-text">No Identitas : <?= $customer['no_identitas']; ?></p>

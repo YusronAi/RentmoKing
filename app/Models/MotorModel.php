@@ -7,7 +7,8 @@ use CodeIgniter\Model;
 class MotorModel extends Model
 {
     protected $table = 'motor';
-    protected $allowedFields = ['merek', 'no_polisi', 'warna', 'foto', 'no_mesin', 'no_rangka', 'thn_keluar', 'status'];
+    protected $primaryKey = 'id_motor';
+    protected $allowedFields = ['merek', 'no_polisi', 'warna', 'foto', 'no_mesin', 'no_rangka', 'thn_keluar', 'status', 'biaya'];
 
     public function search ($value) 
     {
@@ -17,6 +18,10 @@ class MotorModel extends Model
     public function cari ($id)
     {
         return $this->table('motor')->like('no_mesin', $id);
+    }
+
+    public function cariIm ($id) {
+        return $this->table('motor')->where('id_motor', $id);
     }
 
     public function jumlah () {

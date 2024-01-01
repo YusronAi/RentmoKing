@@ -17,6 +17,8 @@
                         <?php foreach ($motor as $item): ?>
                             <?php $i = 1; ?>
                         <p class="card-text">Merek Motor : <?= $item['merek']; ?></p>
+                        <p class="card-text">Status Motor: <?= $item['status']; ?></p>
+                        <a href="/petugas/cetak"><button class="btn btn-primary text-center">Cetak</button></a>
                         <?php $i++ ?>
                         <?php endforeach; ?>
                     </div>

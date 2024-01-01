@@ -1,7 +1,6 @@
 <?= $this->extend('layouts/frame'); ?>
 
 <?= $this->section('content'); ?>
-
 <div class="container">
     <div class="row align-items-center justify-content-center">
 
@@ -15,12 +14,14 @@
                         <p class="card-text">No Polisi : <?= $motor['no_polisi']; ?></p>
                         <p class="card-text">Warna : <?= $motor['warna']; ?></p>
                         <p class="card-text">Status : <?= $motor['status']; ?></p>
+                        <p class="card-text">Biaya : <?= $motor['biaya']; ?>&nbsp;Per hari</p>
+                        <a href="/motor/delete/<?= $motor['id_motor']; ?>"><button class="btn btn-danger text-center">Hapus</button></a>
+                        <a href="/motor/ubah/<?= $motor['id_motor']; ?>"><button class="btn btn-success text-center">Edit</button></a>
                     </div>
                 </div>
             </div>
             <?php $i++ ?>
         <?php endforeach; ?>
-
-    </div>
+    </div><?= $pager->simpleLinks(); ?>
 </div>
 <?= $this->endSection(); ?>

@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class CustomersModel extends Model
 {
     protected $table = 'pelanggan';
+    protected $primaryKey = 'id_pelanggan';
     protected $allowedFields = ['nama', 'foto', 'jenis_kelamin', 'no_identitas', 'universitas', 'alamat_asal', 'alamat_sekarang', 'telphone'];
 
     public function search ($value) 

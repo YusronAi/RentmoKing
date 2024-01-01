@@ -2,17 +2,24 @@
 
 namespace App\Controllers;
 
+use App\Models\HargaModel;
+use App\Models\MotorModel;
 use App\Models\TransaksiModel;
 use App\Libraries\Pdfgenerator;
-use App\Libraries\MY_TCPDF AS TCPDF;
+use App\Controllers\BaseController;
+use App\Libraries\MY_TCPDF as TCPDF;
 
 class Transaksicontroller extends BaseController
 {
     protected $transaksiModel;
+    protected $motorModel;
+    protected $hargaModel;
 
     public function __construct()
     {
         $this->transaksiModel = new TransaksiModel();
+        $this->motorModel = new MotorModel();
+        $this->hargaModel = new HargaModel();
     }
     public function transaksi()
     {
@@ -55,6 +62,40 @@ class Transaksicontroller extends BaseController
             'status' => $this->request->getVar('status')
         ]);
 
+        $im = $this->request->getVar('id_motor');
+        $lama = $this->request->getVar('lama');
+        $ip = $this->request->getVar('id_pelanggan');
+
+        session()->setFlashdata([
+            'im' => $im,
+            'lama' => $lama,
+            'ip' => $ip
+        ]);
+
+        return redirect()->to('/petugas/total-biaya');
+    }
+
+    public function totalBiaya()
+    {
+        $im = session()->getFlashdata('im');
+        $lama = session()->getFlashdata('lama');
+        $ip = session()->getFlashdata('ip');
+
+        $motor = $this->motorModel->cariIm($im)->first();
+        
+        $biaya = $lama / 24 * $motor['biaya'];
+
+        if ($motor['status'] == 'Tersedia') {
+            $this->hargaModel->insert([
+                'id_motor' => $im,
+                'id_pelanggan' => $ip,
+                'waktu' => $lama,
+                'biaya' => $biaya
+            ]);
+        }
+
+        $this->motorModel->update($im, ['status' => 'Terpinjam']);
+
         return redirect()->to('/petugas/transaksi');
     }
 
@@ -84,21 +125,21 @@ class Transaksicontroller extends BaseController
 
         // create new PDF document
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-        
+
         // set document information
         $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('Sobatcoding.com');
-        $pdf->SetTitle('PDF Sobatcoding.com');
+        $pdf->SetAuthor('King');
+        $pdf->SetTitle('RENTMO KING');
         $pdf->SetSubject('TCPDF Tutorial');
-        $pdf->SetKeywords('TCPDF, PDF, example, sobatcoding.com');
+        $pdf->SetKeywords('TCPDF, PDF, example, RENTMOKING');
 
         // set default header data
-        $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
-        $pdf->setFooterData(array(0,64,0), array(0,64,128));
+        $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE . ' 001', PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
+        $pdf->setFooterData(array(0, 64, 0), array(0, 64, 128));
 
         // set header and footer fonts
-        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        $pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
         // set default monospaced font
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
@@ -127,7 +168,7 @@ class Transaksicontroller extends BaseController
         // This method has several options, check the source code documentation for more information.
         $pdf->AddPage();
 
-       //view mengarah ke invoice.php
+        //view mengarah ke invoice.php
         $html = view('customers/cetak');
 
         // Print text using writeHTMLCell()
@@ -137,7 +178,6 @@ class Transaksicontroller extends BaseController
         $this->response->setContentType('application/pdf');
         // Close and output PDF document
         // This method has several options, check the source code documentation for more information.
-        $pdf->Output('invoice-pos-sobatcoding.pdf', 'I');
-
+        $pdf->Output('invoice-rentmoking.pdf', 'I');
     }
 }

@@ -82,9 +82,9 @@
 
                             <div class="form-outline mb-4">
                                 <select name="lama" id="lama">
-                                    <option value="15 Jam">15 Jam</option>
-                                    <option value="24 Jam">24 Jam</option>
-                                    <option value="48 Jam">48 Jam</option>
+                                    <option value="24">24 Jam</option>
+                                    <option value="48">48 Jam</option>
+                                    <option value="62">62 Jam</option>
                                 </select>
                                 <br>
                                 <label class="form-label" for="lama">Lama Pinjam</label>

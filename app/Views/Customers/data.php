@@ -17,12 +17,15 @@
                         <p class="card-text">Alamat Asal : <?= $customer['alamat_asal']; ?></p>
                         <p class="card-text">Alamat Sekarang : <?= $customer['alamat_sekarang']; ?></p>
                         <p class="card-text">Telephone : <?= $customer['telphone']; ?></p>
+                        <a href="/petugas/delete-customer/<?= $customer['id_pelanggan']; ?>"><button class="btn btn-danger text-center">Hapus</button></a>
+                        <a href="/petugas/ubah/<?= $customer['id_pelanggan']; ?>"><button class="btn btn-success text-center">Edit</button></a>
                     </div>
                 </div>
             </div>
             <?php $i++ ?>
         <?php endforeach; ?>
     </div>
+    <?= $pager->simpleLinks(); ?>
 </div>
 
 <?= $this->endSection(); ?>

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand navbar-dark bg-black static-top">
-    <div class="container-fluid ">
+    <div class="container-fluid">
 
         <div class="dropdown">
             <button class="dropdown-toggle btn-sm text-black order-1 order-sm-0 rounded-pill" id="sidebarToggle" href="#" data-toggle="dropdown">

@@ -16,12 +16,14 @@
                         <p class="card-text">Alamat : <?= $user['alamat']; ?></p>
                         <p class="card-text">No Telephone : <?= $user['no_telephone']; ?></p>
                         <p class="card-text">Role : <?= $user['role']; ?></p>
+                        <a href="/data-user/delete/<?= $user['id_user']; ?>"><button class="btn btn-danger text-center">Hapus</button></a>
+                        <a href="/data-user/ubah/<?= $user['id_user']; ?>"><button class="btn btn-success text-center">Edit</button></a>
                     </div>
                 </div>
             </div>
             <?php $i++ ?>
         <?php endforeach; ?>
-
     </div>
+    <?= $pager->simpleLinks(); ?>
 </div>
 <?= $this->endSection(); ?>

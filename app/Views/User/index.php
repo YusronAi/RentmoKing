@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animated Login & Registration Form | Codehal</title>
     <link rel="stylesheet" type="text/css" href="\css\style.css">
+    <link rel="icon" href="/favico.ico" type="image/gif">
 </head>
 
 <body>
@@ -15,7 +16,7 @@
             <form action="/auth" method="post">
                 <h2>Login</h2>
                 <div class="input-group">
-                    <input type="text" name="username" required>
+                    <input type="text" name="username">
                     <label for="">Username</label>
                 </div>
                 <div class="input-group">

@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
     protected $table = 'user';
+    protected $primaryKey = 'id_user';
     protected $allowedFields = ['username', 'password', 'alamat', 'foto', 'no_telephone', 'role'];
 
     public function search ($value) 
@@ -16,6 +17,6 @@ class UserModel extends Model
 
     public function cari ($id)
     {
-        return $this->table('user')->like('id', $id);
+        return $this->table('user')->like('id_user', $id);
     }
 }

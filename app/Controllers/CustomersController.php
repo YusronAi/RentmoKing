@@ -16,14 +16,15 @@ class CustomersController extends BaseController
         if ($keyword = $this->request->getVar('keyword')) {
             $customer = $this->customersModel->search($keyword);
             if (!empty($customer)) {
-                $customer = $this->customersModel->findAll();
+                $customer = $this->customersModel;
             }
         } else {
-            $customer = $this->customersModel->findAll();
+            $customer = $this->customersModel;
         }
         $data = [
         'title' => 'Data Customers',
-        'customers' => $customer
+        'customers' => $customer->paginate(3),
+        'pager' => $this->customersModel->pager
         ];
 
         return view('customers/data', $data);
@@ -55,6 +56,67 @@ class CustomersController extends BaseController
             'telphone' => $this->request->getVar('telphone')
         ]);
 
+        return redirect()->to('/petugas/data-customers');
+    }
+
+    public function delete($id)
+    {
+        $customer = $this->customersModel->first($id);
+        // Hapus gambar
+        unlink('img/' . $customer['foto']);
+        $this->customersModel->delete($id);
+
+        return redirect()->to('/petugas/data-customers');
+    }
+
+    public function ubah ($id) {
+        $customer = $this->customersModel->cari($id)->first();
+        $data = [
+            'title' => 'Ubah Data Customer',
+            'customer' => $customer
+        ];
+
+        return view('customers/update', $data);
+    }
+
+    public function update ($id) {
+        $fileFoto = $this->request->getFile('foto');
+
+        // Cek gambar apakah gamabar baru atau lama
+        if ($fileFoto->getError() == 4) {
+            $namaFoto = $this->request->getVar('foto2');
+        } else {
+            
+        // Ambil nama gambar
+        $namaFoto = $fileFoto->getName();
+        // $namaGambar = $fileGambar->getRandomName();
+
+        // Pindah file gambar
+        $fileFoto->move('img');
+
+        // Hapus gambar lama
+        unlink('img/'. $this->request->getVar('foto2'));
+        }
+
+        if ($jk = $this->request->getVar('jenis_kelamin')) {
+            $jk = $this->request->getVar('jenis_kelamin');
+        } else {
+            $jk = $this->request->getVar('jenis_kelamin1');
+        }
+
+        $this->customersModel->save([
+            'id_pelanggan' => $id,
+            'nama' => $this->request->getVar('nama'),
+            'foto' => $namaFoto,
+            'jenis_kelamin' => $jk,
+            'no_identitas' => $this->request->getVar('no_identitas'),
+            'universitas' => $this->request->getVar('universitas'),
+            'alamat_asal' => $this->request->getVar('alamat_asal'),
+            'alamat_sekarang' => $this->request->getVar('alamat_sekarang'),
+            'telphone' => $this->request->getVar('telphone')
+        ]);
+
+        session()->setFlashdata('pesan', 'Data berhasil diubah');
         return redirect()->to('/petugas/data-customers');
     }
 

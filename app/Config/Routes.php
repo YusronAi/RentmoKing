@@ -17,6 +17,10 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('profil', 'User::profil');
     $routes->get('user', 'User::users');
     $routes->get('data-user', 'User::data');
+    $routes->get('data-user/delete/(:num)', 'User::delete/$1');
+    $routes->get('data-user/ubah/(:any)', 'User::ubah/$1');
+    $routes->post('data-user/update/(:any)', 'User::update/$1');
+
     $routes->get('peraturan', 
     'PetugasController::peraturan');
     $routes->get('/', 'PetugasController::petugas');
@@ -31,9 +35,19 @@ $routes->group('petugas', ['filter' => 'auth'], static function ($routes) {
     $routes->get('data-customers', 'CustomersController::customers');
     $routes->post('data-customers', 'CustomersController::customers');
     $routes->get('input-data-customers', 'CustomersController::input');
+    $routes->get('delete-customer/(:any)', 'CustomersController::delete/$1');
+    
+    $routes->get('ubah/(:any)', 'CustomersController::ubah/$1');
+    $routes->post('update/(:any)', 'CustomersController::update/$1');
+
     $routes->get('transaksi', 'TransaksiController::transaksi');
     $routes->get('input-transaksi', 'TransaksiController::input');
     $routes->post('transaksi-save', 'TransaksiController::transaksiSave');
+    $routes->get('detail-transaksi', 'TransaksiController::detail');
+
+    $routes->get('total-biaya', 'TransaksiController::totalBiaya');
+
+
     $routes->get('invoice', 'TransaksiController::view_pdf');
     $routes->get('cetak', 'TransaksiController::cetak');
     $routes->get('laporan', 'CustomersController::laporan');
@@ -47,6 +61,9 @@ $routes->group('motor', ['filter' => 'auth'], static function ($routes) {
     $routes->get('harga-sewa', 'MotorController::hargaSewa');
     $routes->post('save', 'MotorController::save');
     $routes->get('delete/(:num)', 'MotorController::delete/$1');
+
+    $routes->get('ubah/(:any)', 'MotorController::ubah/$1');
+    $routes->post('update/(:any)', 'MotorController::update/$1');
 });
 
 

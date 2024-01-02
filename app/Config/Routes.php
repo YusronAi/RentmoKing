@@ -41,9 +41,11 @@ $routes->group('petugas', ['filter' => 'auth'], static function ($routes) {
     $routes->post('update/(:any)', 'CustomersController::update/$1');
 
     $routes->get('transaksi', 'TransaksiController::transaksi');
+    $routes->post('transaksi', 'TransaksiController::transaksi');
     $routes->get('input-transaksi', 'TransaksiController::input');
     $routes->post('transaksi-save', 'TransaksiController::transaksiSave');
     $routes->get('detail-transaksi', 'TransaksiController::detail');
+    $routes->get('delete/(:any)', 'TransaksiController::delete/$1');
 
     $routes->get('total-biaya', 'TransaksiController::totalBiaya');
 

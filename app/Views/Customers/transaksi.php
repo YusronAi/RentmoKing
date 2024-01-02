@@ -12,15 +12,12 @@
                     <div class="card-body text-white" style="position: absolute;">
                         <p class="card-text">Nama : <?= $item['nama']; ?></p>
                         <p class="card-text">Jenis Kelamin : <?= $item['jenis_kelamin']; ?></p>
-                        
+
                         <p class="card-text">Alamat Sekarang : <?= $item['alamat_sekarang']; ?></p>
-                        <?php foreach ($motor as $item): ?>
-                            <?php $i = 1; ?>
-                        <p class="card-text">Merek Motor : <?= $item['merek']; ?></p>
-                        <p class="card-text">Status Motor: <?= $item['status']; ?></p>
-                        <a href="/petugas/cetak"><button class="btn btn-primary text-center">Cetak</button></a>
-                        <?php $i++ ?>
-                        <?php endforeach; ?>
+                            <p class="card-text">Merek Motor : <?= $item['merek']; ?></p>
+                            <p class="card-text">Status Motor: <?= $item['status']; ?></p>
+                        <a href="/petugas/delete/<?= $item['id_transaksi']; ?>"><button class="btn btn-danger text-center">Hapus</button></a>
+                        <a href="/petugas/cetak/<?= $item['id_transaksi']; ?>"><button class="btn btn-primary text-center">Cetak</button></a>
                     </div>
                 </div>
             </div>

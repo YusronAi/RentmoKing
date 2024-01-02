@@ -55,7 +55,7 @@
 </div>
 <div class="container mb-5 mt-5"></div>
 <div class="container mt-5 d-flex justify-content-center">
-    <a href="/petugas/input-transaksi"><button class="btn btn-outline-danger btn-lg  rounded-circle">Input Transaksi</button></a>
+    <a href="/petugas/input-transaksi"><button class="btn btn-outline-danger btn-lg  rounded-pill">Input Transaksi</button></a>
 </div>
 
 <?= $this->endSection(); ?>

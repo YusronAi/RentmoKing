@@ -12,12 +12,16 @@ class TransaksiModel extends Model
 
     public function AllData()
     {
-        return $this->db->table('transaksi')->join('pelanggan', 'pelanggan.id_pelanggan=transaksi.id_pelanggan', 'left')->get()->getResultArray();
+        return $this->db->table('transaksi')->join('pelanggan', 'pelanggan.id_pelanggan=transaksi.id_pelanggan', 'left')->join('motor', 'motor.id_motor=transaksi.id_motor', 'left')->select('transaksi.*')->select('pelanggan.*')->select('motor.id_motor, motor.merek, motor.warna, motor.thn_keluar, motor.status, motor.biaya')->get()->getResultArray();
     }
 
     public function cari ($id)
     {
-        return $this->table('transaksi')->like('id_transaksi', $id);
+        return $this->table('transaksi')->where('id_transaksi', $id);
+    }
+
+    public function search ($value) {
+        return $this->table('transaksi')->join('pelanggan', 'pelanggan.id_pelanggan=transaksi.id_pelanggan', 'left')->join('motor', 'motor.id_motor=transaksi.id_motor', 'left')->select('pelanggan.*')->select('motor.id_motor, motor.merek, motor.warna, motor.thn_keluar, motor.status, motor.biaya')->select('transaksi.*')->where('nama', $value)->orLike('alamat_asal', $value);
     }
 
     public function AllMotor()
@@ -29,8 +33,8 @@ class TransaksiModel extends Model
         return $this->db->table('pelanggan')->get()->getResultArray();
     }
 
-    public function AllMotors () {
-        return $this->db->table('motor')->get()->getResultArray();
+    public function AllMotors ($value) {
+        return $this->table('motor')->whereIn('status', $value);
     }
 
     public function jumlah () {

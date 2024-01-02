@@ -64,6 +64,7 @@ class User extends BaseController
                 if ($password == $user['password']) {
                     $set = session();
                     $set->set('login', $user);
+                    session()->setFlashdata('pesan', 'Berhasil Login');
                     return redirect()->to('/');
                 } else {
                     session()->setFlashdata('pesan', 'Password Salah!');

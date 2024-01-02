@@ -17,7 +17,7 @@ class CustomersModel extends Model
 
     public function cari ($id)
     {
-        return $this->table('pelanggan')->like('id_pelanggan', $id);
+        return $this->table('pelanggan')->where('id_pelanggan', $id);
     }
 
     public function jumlah () {

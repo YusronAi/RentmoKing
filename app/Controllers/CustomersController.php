@@ -56,15 +56,19 @@ class CustomersController extends BaseController
             'telphone' => $this->request->getVar('telphone')
         ]);
 
+        session()->setFlashdata('pesan', 'Data Berhasil Ditambah');
+
         return redirect()->to('/petugas/data-customers');
     }
 
     public function delete($id)
     {
-        $customer = $this->customersModel->first($id);
+        $customer = $this->customersModel->cari($id)->first();
         // Hapus gambar
         unlink('img/' . $customer['foto']);
         $this->customersModel->delete($id);
+
+        session()->setFlashdata('pesan', 'Data Berhasil Dihapus');
 
         return redirect()->to('/petugas/data-customers');
     }

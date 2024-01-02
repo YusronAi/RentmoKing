@@ -84,7 +84,7 @@
                                 <select name="lama" id="lama">
                                     <option value="24">24 Jam</option>
                                     <option value="48">48 Jam</option>
-                                    <option value="62">62 Jam</option>
+                                    <option value="72">72 Jam</option>
                                 </select>
                                 <br>
                                 <label class="form-label" for="lama">Lama Pinjam</label>

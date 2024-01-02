@@ -23,13 +23,22 @@ class Transaksicontroller extends BaseController
     }
     public function transaksi()
     {
-        $transaksi = $this->transaksiModel->AllData();
-        $motor = $this->transaksiModel->AllMotor();
+        if ($keyword = $this->request->getVar('keyword')) {
+            $transaksi = $this->transaksiModel->search($keyword)->findAll();
+            if ($transaksi) {
+                $transaksi = $this->transaksiModel->search($keyword)->findAll();
+            } else {
+                $transaksi = $this->transaksiModel->AllData();
+            }
+        } else {
+            $transaksi = $this->transaksiModel->AllData();
+        }
+
+        // dd($transaksi);
 
         $data = [
             'title' => 'Data Transaksi',
-            'transaksi' => $transaksi,
-            'motor' => $motor
+            'transaksi' => $transaksi
         ];
 
         return view('customers/transaksi', $data);
@@ -37,8 +46,10 @@ class Transaksicontroller extends BaseController
 
     public function input()
     {
-        $motor = $this->transaksiModel->AllMotors();
+        $status = 'Tersedia';
+        $motor = $this->transaksiModel->AllMotors($status);
         $pelanggan = $this->transaksiModel->AllPelanggan();
+        dd($motor);
         $data = [
             'title' => 'Input Transaksi',
             'motor' => $motor,
@@ -62,6 +73,7 @@ class Transaksicontroller extends BaseController
             'status' => $this->request->getVar('status')
         ]);
 
+        $id = $this->transaksiModel->insertId();
         $im = $this->request->getVar('id_motor');
         $lama = $this->request->getVar('lama');
         $ip = $this->request->getVar('id_pelanggan');
@@ -69,7 +81,8 @@ class Transaksicontroller extends BaseController
         session()->setFlashdata([
             'im' => $im,
             'lama' => $lama,
-            'ip' => $ip
+            'ip' => $ip,
+            'id' => $id
         ]);
 
         return redirect()->to('/petugas/total-biaya');
@@ -80,15 +93,20 @@ class Transaksicontroller extends BaseController
         $im = session()->getFlashdata('im');
         $lama = session()->getFlashdata('lama');
         $ip = session()->getFlashdata('ip');
+        $id = session()->getFlashdata('id');
 
         $motor = $this->motorModel->cariIm($im)->first();
-        
-        $biaya = $lama / 24 * $motor['biaya'];
+
+        // dd($id);
+        $biayaAwal = $motor['biaya'];
+        $duration = $lama / 24;
+        $biaya = $biayaAwal * $duration;
 
         if ($motor['status'] == 'Tersedia') {
             $this->hargaModel->insert([
                 'id_motor' => $im,
                 'id_pelanggan' => $ip,
+                'id_transaksi' => $id,
                 'waktu' => $lama,
                 'biaya' => $biaya
             ]);
@@ -97,6 +115,18 @@ class Transaksicontroller extends BaseController
         $this->motorModel->update($im, ['status' => 'Terpinjam']);
 
         return redirect()->to('/petugas/transaksi');
+    }
+
+    public function delete($id)
+    {
+        $transaksi = $this->transaksiModel->cari($id)->first();
+
+        $im = $transaksi['id_motor'];
+        $this->motorModel->update($im, ['status' => 'Tersedia']);
+        $this->transaksiModel->delete($id);
+        session()->setFlashdata('pesan', 'Data Berhasil Dihapus');
+
+        return redirect()->to('petugas/transaksi');
     }
 
     public function view_pdf()

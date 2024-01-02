@@ -8,7 +8,7 @@ class HargaModel extends Model
 {
     protected $table = 'harga';
     protected $primaryKey = 'id_harga';
-    protected $allowedFields = ['id_motor', 'id_pelanggan', 'waktu', 'biaya'];
+    protected $allowedFields = ['id_motor', 'id_pelanggan', 'id_transaksi', 'waktu', 'biaya'];
 
     public function AllData()
     {

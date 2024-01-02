@@ -60,6 +60,7 @@ class MotorController extends BaseController
             'biaya' => $this->request->getVar('biaya')
         ]);
 
+        session()->setFlashdata('pesan', 'Data Berhasil Ditambah');
         return redirect()->to('/motor/data-motor');
     }
 
@@ -113,16 +114,18 @@ class MotorController extends BaseController
             'biaya' => $this->request->getVar('biaya')
         ]);
 
-        session()->setFlashdata('pesan', 'Data berhasil diubah');
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah');
         return redirect()->to('/motor/data-motor');
     }
 
     public function delete($id)
     {
-        $motor = $this->motorModel->first($id);
+        $motor = $this->motorModel->cariIm($id)->first();
         // Hapus gambar
         unlink('img/' . $motor['foto']);
         $this->motorModel->delete($id);
+
+        session()->setFlashdata('pesan', 'Data Berhasil Dihapus');
 
         return redirect()->to('/motor/data-motor');
     }

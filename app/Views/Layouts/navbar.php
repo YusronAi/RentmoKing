@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <div class="dropdown">
-            <button class="dropdown-toggle btn-sm text-black order-1 order-sm-0 rounded-pill" id="sidebarToggle" href="#" data-toggle="dropdown">
+            <button class="dropdown-toggle btn-sm text-white order-1 order-sm-0 rounded-pill" id="sidebarToggle" href="#" data-toggle="dropdown" style="background-color: black;">
                 <i class="fas fa-bars"></i>
             </button>
             <!-- Sidebar -->
@@ -62,7 +62,7 @@
         <a style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color : gold;" class="navbar-brand mr-1" href="/">Rentmo King</a>&nbsp;
 
         <!-- Navbar Search -->
-        <?php if ($_SERVER['PHP_SELF'] == "/index.php/petugas/data-customers" || $_SERVER["PHP_SELF"] == "/index.php/motor/data-motor") {
+        <?php if ($_SERVER['PHP_SELF'] == "/index.php/petugas/data-customers" || $_SERVER["PHP_SELF"] == "/index.php/motor/data-motor" || $_SERVER['PHP_SELF'] == "/index.php/petugas/transaksi") {
             echo '<form method="post" action="" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <div class="input-group">
                 <input type="text" name="keyword" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -76,6 +76,11 @@
         } else {
         }
         ?>
+        <?php if (session()->getFlashdata()) : ?>
+            <script>
+                alert("<?= session()->getFlashdata('pesan'); ?>");
+            </script>
+        <?php endif; ?>
 
         <!-- Navbar -->
         <div class="collapse navbar-collapse justify-content-end">
